@@ -11,11 +11,10 @@ require('./startup/config')()
 require('./startup/validate')()
 require('./startup/prod')(app)
 
+const port = process.env.PORT || config.get('port')
 
-if(config.get('NODE_ENV') === 'production' || config.get('NODE_ENV') === 'development'){
-    const server = app.listen(config.get('port'), () =>
-    console.log(`Listening on port ${port}...`),
-  )
-}
+const server = app.listen(port, () =>
+  console.log(`Listening on port ${port}...`),
+)
 
 module.exports = server
